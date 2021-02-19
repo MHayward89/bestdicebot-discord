@@ -1,6 +1,9 @@
 import discord
 import os
 from random import randrange
+from dotenv import load_dotenv
+
+load_dotenv()
 
 client = discord.Client()
 
@@ -42,4 +45,4 @@ async def on_message(message):
 
     await message.channel.send(messageString)
 
-client.run(os.getenv('TOKEN'))
+client.run(os.environ.get('TOKEN'))
