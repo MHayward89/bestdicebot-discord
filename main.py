@@ -45,4 +45,7 @@ async def on_message(message):
 
     await message.channel.send(messageString)
 
+  if message.content.startwith('!bear'):
+      await message.channel.send("https://placebear.com/400/400")
+
 client.run(os.environ.get('TOKEN'))
