@@ -49,6 +49,8 @@ async def on_message(message):
     await message.channel.send(messageString)
 
   if message.content.startswith('!bear'):
-      await message.channel.send("https://placebear.com/400/400")
+      xSize = randint(400,500)
+      ySize = randint(400,500)
+      await message.channel.send("https://placebear.com/"+xSize+"/"+ySize)
 
 client.run(os.environ.get('TOKEN'))
