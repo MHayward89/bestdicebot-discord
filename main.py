@@ -1,6 +1,6 @@
 import discord
 import os
-from random import randrange
+from random import randint
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -33,10 +33,13 @@ async def on_message(message):
     if numberOfDice > 0 and numberOfDice <= 1000 and diceFaceCount > 0 and diceFaceCount <= 10000:
       messageString = splitMessage[1] + " = ("
       for i in range(0, numberOfDice):
-        rollValue = randrange(0, diceFaceCount)
+        if diceFaceCount == 1:
+          rollValue = 1
+        else: 
+          rollValue = randint(1, diceFaceCount)
         totalRollValue += rollValue
         messageString += str(rollValue)
-        if (i != numberOfDice - 1):
+        if i != numberOfDice - 1:
           messageString += "+"
       messageString += ") = " + str(totalRollValue)
 
@@ -45,7 +48,7 @@ async def on_message(message):
 
     await message.channel.send(messageString)
 
-  if message.content.startwith('!bear'):
+  if message.content.startswith('!bear'):
       await message.channel.send("https://placebear.com/400/400")
 
 client.run(os.environ.get('TOKEN'))
