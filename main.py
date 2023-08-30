@@ -5,7 +5,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = discord.Client()
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
@@ -46,12 +48,12 @@ async def on_message(message):
     if len(messageString) > 1500:
       messageString = "Too loooooooooooooooooooooong"
 
-    await message.channel.send(messageString)
+    await message.reply(messageString, mention_author=False)
 
   if message.content.startswith('!bear'):
       xSize = randint(400,500)
       ySize = randint(400,500)
       placeBearUrl = "https://placebear.com/" + str(xSize) + "/" + str(ySize)
-      await message.channel.send(placeBearUrl)
+      await message.reply(placeBearUrl, mention_author=False)
 
 client.run(os.environ.get('TOKEN'))
